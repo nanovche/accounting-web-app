@@ -1,0 +1,225 @@
+{% load static %}
+
+<html>
+    <head>
+        <title> Accounting system </title>
+        <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" >
+        <link rel="stylesheet" type="text/css" href="{% static 'acc/main.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+        <style>
+            /* header and footer styling, naming grid-areas */
+
+            header, footer {
+                position: relative;
+            }
+            header {
+                grid-area: header;
+            }
+            footer {
+                display: flex;
+                align-items: center;
+                grid-area: footer;
+            }
+
+            nav {
+               grid-area: nav;
+            }
+
+            /* creating grid layout for page */
+
+            .grid-container {
+                display: grid;
+                grid-template-rows: 15% 70% 15%;
+                grid-template-columns: 25% 75%;
+                height: 100%;
+                grid-template-areas:
+                    "header header header header header"
+                    "nav main main main main"
+                    "footer footer footer footer footer";
+            }
+
+            /*  Navigation bar and dropdown-menu: positioning and styling */
+
+            .nav-link, .dropdown-menu-button, .dropdown-content a{
+                display: block;
+                color: white;
+                font-size: 22px;
+                text-decoration: none;
+                padding: 30px 10px 10px 60px;
+                margin: 5px;
+                height: 20px;
+            }
+            .nav-link, .dropdown-menu-button {
+                width: 30%;
+            }
+            .dropdown-menu-button {
+                cursor: pointer;
+            }
+            .dropdown-menu-button {
+                position: relative;
+            }
+
+            /* underline on hover */
+
+            .nav-link:hover, .dropdown-menu-button:hover {
+                text-decoration: underline;
+                font-size: 28px;
+            }
+
+            /* display dropdown content when hover is present */
+
+            .dropdown-menu-button:hover .dropdown-content {
+                display: block;
+                position: absolute;
+                left: 100%;
+                top: 0px;
+            }
+
+            /* do not display dropdown content by default */
+
+            .dropdown-menu-button:hover .dropdown-content a{
+                display: block;
+            }
+
+            .dropdown-content {
+                display: none;
+            }
+
+            /* Specifying specific colors for the underlines of different links */
+            .nav-link[id] {
+                text-decoration-thickness: 4px;
+                text-underline-position: under;
+            }
+
+            #id1 {
+                text-decoration-color: #CEEC97;
+            }
+            #id2 {
+                text-decoration-color: #F4B393;
+            }
+            #id3 {
+                text-decoration-color: #FC60A8;
+                text-decoration-thickness: 4px;
+                text-underline-position: under;
+            }
+            #id4 {
+                text-decoration-color: #7A28CB;
+            }
+            #id5 {
+                text-decoration-color: #494368;
+            }
+            #id6 {
+                text-decoration-color: #BBC8CA;
+            }
+            #id7 {
+                text-decoration-color: #B592A0;
+            }
+            #id8 {
+                text-decoration-color: #9C7178;
+            }
+            #id9 {
+                text-decoration-color: #FFC2B4;
+            }#id10 {
+                text-decoration-color: #D38B5D;
+            }#id11 {
+                text-decoration-color: #739E82;
+            }
+
+            /* Logo and name of brand */
+
+            img {
+                width: 70px;
+            }
+
+
+            .brand {
+                display: inline;
+                font-size: 60px;
+                color: #f3f9fb;
+                font-family: 'Indie Flower', cursive;;
+                font-style: italic;
+                font-weight: lighter;
+            }
+            .brand, img{
+                vertical-align: middle;
+            }
+            .logo-name-link-container {
+                position: fixed;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                left: 60px;
+            }
+            .logo-name-link-itself {
+                text-decoration: none;
+            }
+            .logo-name-link-itself:hover {
+                text-decoration: none;
+            }
+
+            /* styling social media icons */
+
+            .contacts-icons {
+                align-self: start;
+            }
+            .fa {
+              padding: 15px;
+              font-size: 30px;
+              width: 50px;
+              border-radius: 10%;
+              text-align: center;
+              text-decoration: none;
+              opacity: 0.6;
+            }
+            .fa:hover {
+              opacity: 0.7;
+            }
+            .fa-facebook, .fa-phone {
+              background: #3B5998;
+              color: white;
+            }
+            .fa-instagram, .fa-envelope {
+              background: #c32aa3;
+              color: white;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="grid-container">
+            <header>
+                <div class="logo-name-link-container">
+                    <a class="logo-name-link-itself" href="{% url 'home-page' %}">
+                        <span class="brand">N&M Design</span></a>
+                </div>
+            </header>
+            <nav>
+                        <a class="nav-link" id="id1" href="{% url 'home-page' %}">Начало</a>
+                    {% if user.is_authenticated %}
+                            <a class="nav-link" id="id2" href="#" >Приходи</a>
+                            <div class="dropdown-menu-button" id="id3">Разходи
+                                    <div class="dropdown-content">
+                                        <a  class="nav-link" id="id6" href="#">Покупки</a>
+                                        <a class="nav-link" id="id7" href="{% url 'services' %}">Консумативи</a>
+                                        <a class="nav-link" id="id8" href="#">Данъци</a>
+                                    </div>
+                            </div>
+                        <a class="nav-link" id="id4" href="{% url 'profile' %}">Профил</a>
+                        <a class="nav-link" id="id5" href="{% url 'logout' %}">Отписване</a>
+                    {% else %}
+                        <a class="nav-link" id="id9" href="{% url 'login' %}" >Вписване</a>
+                        <a class="nav-link" id="id10" href="{% url 'register' %}">Регистрация</a>
+                    {% endif%}
+                        <a class="nav-link" id="id11" href="{% url 'contacts' %}">Контакти</a>
+            </nav>
+            {% block content %}
+            {% endblock%}
+            <footer>
+                <div class="contacts-icons">
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

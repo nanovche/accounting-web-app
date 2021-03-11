@@ -1,0 +1,41 @@
+{% extends 'acc/base.html' %}
+
+
+{% block content %}
+    <main class="login-form">
+        <div class="login-main-section">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                    <table>
+                        {% for field in form %}
+                            <tr>
+                                <th>
+                                    {{ field.label_tag }}
+                                </th>
+                                <td>
+                                    {{ field.errors }}
+                                    {{ field }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <th>
+                            </th>
+                            <td>
+                                <button class="login-button" type="submit"> Влезте ! </button>
+                            </td>
+                        </tr>
+                    </table>
+            </form>
+        </div>
+        <div class="login-secondary-section">
+            <small>
+                <span class="small-register">Нямате акаунт?</span>
+                <a href="{% url 'register' %}"><strong>Регистрирайте се !</strong></a>
+            </small>
+        </div>
+    </main>
+{% endblock content %}
+
+<!-- translate mistake -->

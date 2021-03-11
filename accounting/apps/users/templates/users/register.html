@@ -1,0 +1,38 @@
+{% extends 'acc/base.html' %}
+{% block content %}
+    <main class="register-form">
+        <div class="register-main-section">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <table>
+                        {% for field in form %}
+                        <tr>
+                            <th>{{ field.label_tag }}</th>
+                            <td>
+                                {{ field.errors }}
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="help">{{ field.help_text|safe }}</div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor%}
+                        <tr>
+                            <th>
+                            </th>
+                            <td>
+                                <button class="register-button" type="submit">Регистирайте се !</button>
+                            </td>
+                        </tr>
+                    </table>
+            </form>
+        </div>
+        <div class="register-secondary-section">
+            <small>
+                <span class="small-login">Вече имате акаунт?</span>
+                <a href="{% url 'register' %}"><strong>Влезте сега!</strong></a>
+            </small>
+        </div>
+    </main>
+{% endblock content %}

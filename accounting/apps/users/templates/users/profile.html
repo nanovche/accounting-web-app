@@ -1,0 +1,12 @@
+{% extends 'acc/base.html' %}
+{% block content %}
+    <main class="profile">
+        <h2> Потребителско име: {{user.username}} </h2>
+        <p> {{user.phone}} </p>
+        <p> {{user.email}} </p>
+    </main>
+
+<!--<img src="{{ user.profile.image.url }}" xmlns:border-radius="http://www.w3.org/1999/xhtml"-->
+<!--     alt="problem occured loading the image" width=100 height = 100 style="border-radius: 50%">-->
+
+{% endblock content %}

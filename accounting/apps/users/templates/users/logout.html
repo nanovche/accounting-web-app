@@ -1,0 +1,9 @@
+{% extends 'acc/base.html' %}
+{% block content %}
+    <main class="logout-form">
+        <h2 class="logout-text">Отписахте се успешно !</h2>
+        <small>
+            <a href="{% url 'login' %}"> <strong>Влезте отново !</strong> </a>
+        </small>
+    </main>
+{% endblock content %}
